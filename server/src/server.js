@@ -11,7 +11,7 @@ const server = http.createServer(app);
 async function startServer() {
   await loadPlanetsData(); //Populate our server with data before it loads 
 
-  server.listen(PORT, () => {
+  server.listen(PORT, () => { //listen starts the server
     console.log(`Listening on port ${PORT}...`);
   });
 }
