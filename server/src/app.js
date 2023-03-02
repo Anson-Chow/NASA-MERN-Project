@@ -18,7 +18,7 @@ app.use(morgan('combined'));
 app.use(express.json()) //middleware that parses json
 app.use(express.static(path.join(__dirname, '..', 'public'))) //Middleware function provided by Express.js that serves static files from a directory. Static files are files that are not processed by the server, such as HTML, CSS, JavaScript, images, and videos.
 
-app.use('/planets' , planetsRouter) 
+app.use('/planets', planetsRouter) 
 app.use('/launches', launchesRouter) //will only react to requests under the /launches path
 
 // The * matches any endpoint that isnt shown above, it passes it on to our react application to handle the routing instead 

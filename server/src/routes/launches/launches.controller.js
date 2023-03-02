@@ -1,15 +1,15 @@
 const {
   getAllLaunches,
-  addNewLaunch,
+  scheduleNewLaunch,
   abortLaunchById,
   existsLaunchWithId,
 } = require("../../models/launches.model");
 
-function httpGetAllLaunches(req, res) {
-  return res.status(200).json(getAllLaunches());
+async function httpGetAllLaunches(req, res) {
+  return res.status(200).json(await getAllLaunches());
 }
 
-function httpAddNewLaunch(req, res) {
+async function httpAddNewLaunch(req, res) {
   const launch = req.body; // Our express.json() middleware parses the json and populates the req.body parameter with the parsed object
 
   if (
@@ -32,8 +32,8 @@ function httpAddNewLaunch(req, res) {
     });
   }
 
-  addNewLaunch(launch);
-
+  await scheduleNewLaunch(launch);
+  console.log(launch)
   return res.status(201).json(launch);
 }
 
