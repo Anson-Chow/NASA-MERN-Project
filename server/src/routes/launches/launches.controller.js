@@ -5,8 +5,16 @@ const {
   existsLaunchWithId,
 } = require("../../models/launches.model");
 
+const {
+  getPagination,
+} = require('../../services/query')
+
+
 async function httpGetAllLaunches(req, res) {
-  return res.status(200).json(await getAllLaunches());
+  // console.log(req.query) 
+  const { skip, limit } = getPagination(req.query);
+  const launches = (await getAllLaunches(skip, limit));
+  return res.status(200).json(launches)
 }
 
 async function httpAddNewLaunch(req, res) {
@@ -33,21 +41,29 @@ async function httpAddNewLaunch(req, res) {
   }
 
   await scheduleNewLaunch(launch);
-  console.log(launch)
   return res.status(201).json(launch);
 }
 
-function httpAbortLaunch(req, res) {
+async function httpAbortLaunch(req, res) {
   const launchId = Number(req.params.id); //returns a string while our flightNumber is an Integer. Therefore we have to convert it to an int
 
-  if (!existsLaunchWithId(launchId)) {
+  const existsLaunch = await existsLaunchWithId(launchId)
+  if (!existsLaunch) {
     return res.status(404).json({
       error: "Launch not found",
     });
   }
 
-  const aborted = abortLaunchById(launchId);
-  return res.status(200).json(aborted);
+  const aborted = await abortLaunchById(launchId);
+  if (!aborted) {
+    return res.status(400).json({
+      error: 'Launch not aborted',
+    })
+  }
+  
+  return res.status(200).json({
+    ok: true,
+  }); //returning the aborted json object 
 }
 
 module.exports = {

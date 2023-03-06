@@ -3,9 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 
-const planetsRouter = require('./routes/planets/planets.router')
-const launchesRouter = require('./routes/launches/launches.router')
-const { launches } = require('./models/launches.model')
+const api = require('./routes/api')
 
 const app = express();
 
@@ -18,8 +16,7 @@ app.use(morgan('combined'));
 app.use(express.json()) //middleware that parses json
 app.use(express.static(path.join(__dirname, '..', 'public'))) //Middleware function provided by Express.js that serves static files from a directory. Static files are files that are not processed by the server, such as HTML, CSS, JavaScript, images, and videos.
 
-app.use('/planets', planetsRouter) 
-app.use('/launches', launchesRouter) //will only react to requests under the /launches path
+app.use('/v1', api);
 
 // The * matches any endpoint that isnt shown above, it passes it on to our react application to handle the routing instead 
 app.get('/*', (req, res) => { // Our frontend application is only routing the / and /launch routes to the launch page. Index.html is not one of them. 
