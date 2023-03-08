@@ -5,10 +5,15 @@ const {
   mongoDisconnect,
  } = require("../../services/mongo");
 
+ const {
+  loadPlanetsData,
+ } = require('../../models/planets.model')
+
 describe("Launches API", () => {
 
   beforeAll(async () => { //runs once before all the tests in this describe block are called 
     await mongoConnect();
+    await loadPlanetsData();
   })
 
   afterAll(async() => {
