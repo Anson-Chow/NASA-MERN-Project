@@ -9,7 +9,7 @@ mongoose.connection.once("open", () => {
   console.log("MongoDB connection ready!");
 });
 
-mongoose.set("strictQuery", false); // Was getting a warning, implemented this based on what stackOverflow said
+// mongoose.set("strictQuery", false); // Was getting a warning, implemented this based on what stackOverflow said
 
 mongoose.connection.on("error", (err) => {
   console.error(err);
