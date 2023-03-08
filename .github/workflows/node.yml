@@ -8,7 +8,7 @@ jobs:
   build: 
     env:
       CI: true #will help disable watch mode for npm test 
-      MONGO_URL: mongodb://0.0.0.0:27017/nasa
+      MONGO_URL: mongodb://localhost/nasa
     strategy:
       matrix:
         node-version: [14.x, 16.x]
