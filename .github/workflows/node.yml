@@ -10,7 +10,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v2 #checkout latest version of code from master
       - name: Use Node.js version 16
-        uses: actions/setup-nude@v2 #the version is so that if a new update comes out it won't break out workflow
+        uses: actions/setup-node@v2 #the version is so that if a new update comes out it won't break out workflow
         with: 
           node-version: '16'
       - run: npm install 
