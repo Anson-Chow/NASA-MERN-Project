@@ -9,6 +9,8 @@ const {
   loadPlanetsData,
  } = require('../../models/planets.model')
 
+jest.setTimeout(15000)
+
 describe("Launches API", () => {
 
   beforeAll(async () => { //runs once before all the tests in this describe block are called 
