@@ -6,7 +6,7 @@ on: #on refers to the triggers that'll cause this workflow to run
     branches: [ master ]
 jobs: 
   build: 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps: 
       - uses: actions/checkout@v3 #checkout latest version of code from master
       - name: Use Node.js version 16
