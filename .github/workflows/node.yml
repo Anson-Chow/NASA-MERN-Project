@@ -1,0 +1,19 @@
+name: NASA Project CI
+on: #on refers to the triggers that'll cause this workflow to run
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2 #checkout latest version of code from master
+      - name: Use Node.js version 16
+        uses: actions/setup-nude@v2 #the version is so that if a new update comes out it won't break out workflow
+        with: 
+          node-version: '16'
+      - run: npm install 
+      - run: npm run build --prefix client
+  # deploy: 
+  #   needs: build
