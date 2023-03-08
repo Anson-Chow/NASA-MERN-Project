@@ -13,8 +13,7 @@ jobs:
         uses: actions/setup-node@v3 #the version is so that if a new update comes out it won't break out workflow
         with: 
           node-version: '16'
-      - run: npm install-client
-      - run: npm install-server
+      - run: npm install
       - run: npm run build --prefix client
   # deploy: a
   #   needs: build
