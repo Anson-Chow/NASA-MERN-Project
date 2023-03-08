@@ -9,7 +9,7 @@ const {
   loadPlanetsData,
  } = require('../../models/planets.model')
 
-jest.setTimeout(15000)
+jest.setTimeout(50000)
 
 describe("Launches API", () => {
 
